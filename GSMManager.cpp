@@ -1,0 +1,3 @@
+/* 
+A class meant to process the GSM requirements of the fall detection system
+*/
