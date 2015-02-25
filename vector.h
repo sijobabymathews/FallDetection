@@ -5,11 +5,11 @@
 
 struct vec3
 {
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 
-	vec3(double a, double b, double c)
+	vec3(float a, float b, float c)
 	{
 		x = a;
 		y = b;
@@ -28,12 +28,12 @@ struct vec3
 		return vec3(y*B.z - z*B.y, z*B.x - x*B.z, x*B.y - y*B.x);
 	}
 
-	double dot(vec3 B)
+	float dot(vec3 B)
 	{
 		return (x * B.x + y * B.y + z * B.z);
 	}
 
-	double length()
+	float length()
 	{
 		
 		return sqrt(x * x + y * y + z * z);

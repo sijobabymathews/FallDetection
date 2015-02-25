@@ -80,11 +80,11 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <GSMTest.ino>
-#include <Accelerometer.cpp>
-#include <Accelerometer.h>
 #include <FallDetection.cpp>
 #include <FallDetection.h>
 #include <GSMManager.cpp>
 #include <GSMManager.h>
+#include <MPUAccel.cpp>
+#include <MPUAccel.h>
 #include <vector.h>
 #endif

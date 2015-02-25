@@ -8,7 +8,7 @@ class GSMManager
   public:
     GSMManager();
     bool init();
-    bool sendSMS(char* message, int16_t length);
+    bool sendSMS(char mess[]);
     
   private:
     GSM module;
