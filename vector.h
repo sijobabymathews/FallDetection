@@ -1,6 +1,8 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <math.h>
+
 struct vec3
 {
 	double x;
@@ -33,6 +35,7 @@ struct vec3
 
 	double length()
 	{
+		
 		return sqrt(x * x + y * y + z * z);
 	}
 
@@ -53,7 +56,7 @@ struct vec3
 		return vec3(x / length(), y / length(), z / length());
 	}
 
-	vec3& operator-(const vec3 &a)
+	vec3 operator-(const vec3 &a)
 	{
 		return vec3(x - a.x, y - a.y, z - a.z);
 	}

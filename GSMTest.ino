@@ -8,18 +8,13 @@ USing a GSM shield and a MPU-6050 to create a GSM notifying accelerometer reader
 
 */
 
-#include <GSM.h>
 #include <Wire.h>
-#include <"Accelerometer.h">
-#include <"FallDetection.h">
-#include <"GSMManager.h">
+#include <GSM.h>
+#include "Accelerometer.h"
+#include "FallDetection.h"
+#include "GSMManager.h"
 
-#define CONTACT_NUMBER 4169300199
-//PIN number for the SIM card
-#define PIN_NUMBER ""
-#define MPU_ADDRESS 0x68
 
-int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ;
 
 GSM gsm;
 GSM_SMS message;
