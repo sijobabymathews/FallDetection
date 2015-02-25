@@ -2,10 +2,10 @@
 #define VECTOR_H
 
 #include <math.h>
-
+#include <Arduino.h>
 
 //if you want verbose logging, else will only print out the 
-#define DEBUG 1
+#define DEBUG 0
 
 template<typename T> void serialPrint(T message)
 {

@@ -14,6 +14,8 @@ USing a GSM shield and a MPU-6050 to create a GSM notifying accelerometer reader
 #include "FallDetection.h"
 #include "GSMManager.h"
 
+
+
 GSMManager gsm;
 FallDetection fallDetection;
 MPUAccel accel;
