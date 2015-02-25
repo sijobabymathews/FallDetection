@@ -3,6 +3,22 @@
 
 #include <math.h>
 
+
+//if you want verbose logging, else will only print out the 
+#define DEBUG 1
+
+template<typename T> void serialPrint(T message)
+{
+	if (DEBUG)
+		Serial.print(message);
+}
+
+template<typename T> void serialPrintln(T message)
+{
+	if (DEBUG)
+		Serial.println(message);
+}
+
 struct vec3
 {
 	float x;

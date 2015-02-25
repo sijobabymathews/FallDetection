@@ -22,11 +22,11 @@ void setup()
 { 
 	Serial.begin(9600);
 
-	//Serial.println("GONNA START STUFF NOW");
+	serialPrintln("GONNA START STUFF NOW");
 
 	accel.MPUInit();
 	//setup the messaging back to the computer
-	//Serial.println("INIT SYSTEM");
+	serialPrintln("INIT SYSTEM");
 }
 
 void loop() 
@@ -36,6 +36,7 @@ void loop()
 	accel.retrieveValues();
 	//Serial.println("GOT SENSOR VALUES");
 
+	//want to print at all times, so keep as Serial.print()
 	Serial.print(accel.getAccel().x);
 	Serial.print(", ");
 	Serial.print(accel.getAccel().y);
@@ -48,7 +49,7 @@ void loop()
 	Serial.print(", ");
 	Serial.println(accel.getGyro().z);
 
-	//Serial.println("GONNA CHECK IF I FELL");
+	serialPrintln("GONNA CHECK IF I FELL");
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
 		gsm.init();
@@ -56,6 +57,6 @@ void loop()
 		gsm.sendSMS(message);
 	}
 
-	//Serial.println("I FINISHED CHECKING");
+	serialPrintln("I FINISHED CHECKING");
 	delay(333);
 }
