@@ -22,9 +22,13 @@ class MPUAccel
 	  void readFromAddress(char address, unsigned char* payload, char length);
       int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ;
 	  vec3 accel, gyro;
+
 	  int16_t accelerometerAccuracy = 0x00;
       int16_t gyroAccuracy = 0x00;
 	  int16_t filterStrength = 0x00;
+
+	  int16_t gyroRange = 2;
+	  int16_t accelRange = 2;
 };
 
 #endif  //ACCELEROMETER_H

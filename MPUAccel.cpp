@@ -61,15 +61,27 @@ char MPUAccel::getAccuracy()
 	return accuracy;
 }
 
+//has 3 settings of accuracy
+// 0x00 : +/- 2G
+// 0x01 : +/- 4G
+// 0x02 : +/- 8G
+// 0x03 : +/- 16G
 void MPUAccel::setAccelAccuracy(char accuracy)
 {
 	//need the shift as per the datasheet
-	writeToAddress(ACCEL_ACCURACY_ADDRESS, accuracy << 2);
+	writeToAddress(ACCEL_ACCURACY_ADDRESS, accuracy << 3);
+	accelerometerAccuracy = accuracy;
+	
 }
 
-void MPUAccel::setAccelAccuracy(char accuracy)
+//has 3 settings of accuracy
+//0 = ± 250 ° / s, 131 LSB / ° / s
+//1 = ± 500 ° / s, 65.5 LSB / ° / s
+//2 = ± 1000 ° / s, 32.8 LSB / ° / s
+//3 = ± 2000 ° / s, 16.4 LSB / ° / s
+void MPUAccel::setGyroAccuracy(char accuracy)
 {
-	writeToAddress(GYRO_ACCURACY_ADDRESS, accuracy << 2);
+	writeToAddress(GYRO_ACCURACY_ADDRESS, accuracy << 3);
 }
 
 //need to know the length of the payload you want and address it is coming from
