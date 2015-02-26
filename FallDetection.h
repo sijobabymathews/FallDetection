@@ -13,6 +13,8 @@ class FallDetection
   private: 
 	  vec3* LPFAccel;
 	  vec3* LPFGyro;
+	  unsigned char spot = 0;
+	  int history[HISTORY_SIZE];
 
 };
 

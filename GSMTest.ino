@@ -54,11 +54,12 @@ void loop()
 	serialPrintln("GONNA CHECK IF I FELL");
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
-		gsm.init();
-		char message[] = "TESTING_123";
-		gsm.sendSMS(message);
+		Serial.print("I FELL YOOOO");
+		//gsm.init();
+		//char message[] = "TESTING_123";
+		//gsm.sendSMS(message);
 	}
 
 	serialPrintln("I FINISHED CHECKING");
-	delay(333);
+	delay(100);
 }
