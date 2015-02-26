@@ -12,12 +12,14 @@ class MPUAccel
     vec3 getAccel();
     vec3 getGyro();
 	int16_t getTemp();
-	bool retrieveValues();
-	int16_t getAccuracy();
+	bool retrieveAccelValues();
+	char getAccuracy();
+	void setAccelAccuracy(char accuracy);
+	void setGyroAccuracy(char accuracy);
 
   private:
-	  void writeToAddress(char address, char payload);
-	  void readFromAddress(char address, char* payload, char length);
+	  void writeToAddress(char address, unsigned char payload);
+	  void readFromAddress(char address, unsigned char* payload, char length);
       int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ;
 	  vec3 accel, gyro;
 	  int16_t accelerometerAccuracy = 0x00;

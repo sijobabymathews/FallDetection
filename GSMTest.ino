@@ -35,21 +35,21 @@ void loop()
 {
 	//Serial.println("ABOUT TO GET SENSOR VALUES");
 	//get the values out of the IMU sensor
-	accel.retrieveValues();
+	accel.retrieveAccelValues();
 	//Serial.println("GOT SENSOR VALUES");
 
 	//want to print at all times, so keep as Serial.print()
-	Serial.print(accel.getAccel().x);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().y);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().z);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().x);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().y);
-	Serial.print(", ");
-	Serial.println(accel.getGyro().z);
+	//Serial.print(accel.getAccel().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().y);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().z);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().y);
+	//Serial.print(", ");
+	//Serial.println(accel.getGyro().z);
 
 	serialPrintln("GONNA CHECK IF I FELL");
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
