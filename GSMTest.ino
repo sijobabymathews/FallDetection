@@ -39,26 +39,27 @@ void loop()
 	//Serial.println("GOT SENSOR VALUES");
 
 	//want to print at all times, so keep as Serial.print()
-	Serial.print(accel.getAccel().x);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().y);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().z);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().x);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().y);
-	Serial.print(", ");
-	Serial.println(accel.getGyro().z);
+	//Serial.print(accel.getAccel().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().y);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().z);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().y);
+	//Serial.print(", ");
+	//Serial.println(accel.getGyro().z);
 
 	serialPrintln("GONNA CHECK IF I FELL");
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
-		gsm.init();
-		char message[] = "TESTING_123";
-		gsm.sendSMS(message);
+		Serial.print("I FELL YOOOO");
+		//gsm.init();
+		//char message[] = "TESTING_123";
+		//gsm.sendSMS(message);
 	}
 
 	serialPrintln("I FINISHED CHECKING");
-	delay(333);
+	delay(100);
 }

@@ -6,6 +6,10 @@
 
 //if you want verbose logging, else will only print out the 
 #define DEBUG 0
+#define P_THRESHOLD 20000.00
+#define DELTA_A_THRESHOLD 10000.00
+#define A_THRESHOLD 25000.00
+#define HISTORY_SIZE 5
 
 template<typename T> void serialPrint(T message)
 {
