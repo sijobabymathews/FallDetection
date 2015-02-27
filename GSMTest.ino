@@ -22,7 +22,8 @@ MPUAccel accel;
 
 void setup()
 { 
-	Serial.begin(9600);
+	Serial.begin(19200);
+	pinMode(3, OUTPUT);
 
 	serialPrintln("GONNA START STUFF NOW");
 
@@ -55,6 +56,9 @@ void loop()
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
 		Serial.print("I FELL YOOOO");
+		digitalWrite(3, HIGH);
+		delay(1500);
+		digitalWrite(3, LOW);
 		//gsm.init();
 		//char message[] = "TESTING_123";
 		//gsm.sendSMS(message);

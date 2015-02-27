@@ -4,9 +4,9 @@ A class meant to process the GSM requirements of the fall detection system
 
 #include "GSMManager.h"
 
-#define CONTACT_NUMBER "4169300199"
+#define CONTACT_NUMBER "5196350891"
 //PIN number for the SIM card
-#define PIN_NUMBER ""
+#define PIN_NUMBER "2016"
 
 GSMManager::GSMManager()
 {
@@ -20,10 +20,19 @@ bool GSMManager::init()
 	// wait for connection to network
 	while (!isConnected)
 	{
+		Serial.println("SHE DOESN'T EVEN GO HERE");
+		Serial.println(GSM_READY, DEC);
+		Serial.println(module.begin(PIN_NUMBER), DEC);
 		if (module.begin(PIN_NUMBER) == GSM_READY)
+		{
+			Serial.println("HEREYOOO");
 			isConnected = true;
+		}
 		else
+		{
+			Serial.println("ATTEMPT FAILED");
 			delay(500);
+		}
 	}
 
 	Serial.println("GSM Connected");
