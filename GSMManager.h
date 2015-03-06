@@ -1,7 +1,8 @@
 #ifndef GSMMANAGER_H
 #define GSMMANAGER_H
 
-#include <GSM.h>
+#include <SoftwareSerial.h>
+#include <Arduino.h>
 
 class GSMManager
 {
@@ -11,9 +12,11 @@ class GSMManager
     bool sendSMS(char mess[]);
     
   private:
-    GSM module;
-	GSM_SMS message;
-    
+	void endSystem();
+	void powerToggle();
+	int8_t sendATcommand(char* ATcommand, char* expected_answer, unsigned int timeout);
+	SoftwareSerial* SIM900;
+
 };
 
 #endif  //GSMMANAGER_H

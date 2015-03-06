@@ -9,16 +9,30 @@ USing a GSM shield and a MPU-6050 to create a GSM notifying accelerometer reader
 */
 
 #include <Wire.h>
-#include <GSM.h>
+#include <SoftwareSerial.h>
 #include "MPUAccel.h"
 #include "FallDetection.h"
 #include "GSMManager.h"
 
 
+int speakerPin = 3;
+
+int numTones = 1;
+int tones[] = { 300, 310, 320, 330, 340, 350, 360, 370, 380, 390 };
 
 GSMManager gsm;
 FallDetection fallDetection;
 MPUAccel accel;
+
+void playTones()
+{
+	for (int i = 0; i < numTones; i++)
+	{
+		tone(speakerPin, tones[i]);
+		delay(1000);
+	}
+	noTone(speakerPin);
+}
 
 void setup()
 { 
@@ -30,6 +44,9 @@ void setup()
 	accel.MPUInit();
 	//setup the messaging back to the computer
 	serialPrintln("INIT SYSTEM");
+
+	gsm.init();
+	gsm.sendSMS("HELLO - THIS IS ARDUINO");
 }
 
 void loop() 
@@ -56,9 +73,7 @@ void loop()
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
 		Serial.print("I FELL YOOOO");
-		digitalWrite(3, HIGH);
-		delay(1500);
-		digitalWrite(3, LOW);
+		playTones();
 		//gsm.init();
 		//char message[] = "TESTING_123";
 		//gsm.sendSMS(message);
