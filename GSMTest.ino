@@ -45,8 +45,8 @@ void setup()
 	//setup the messaging back to the computer
 	serialPrintln("INIT SYSTEM");
 
-	gsm.init();
-	gsm.sendSMS("HELLO - THIS IS ARDUINO");
+	//gsm.init();
+	//gsm.sendSMS("HELLO - THIS IS ARDUINO");
 }
 
 void loop() 
@@ -57,23 +57,23 @@ void loop()
 	//Serial.println("GOT SENSOR VALUES");
 
 	//want to print at all times, so keep as Serial.print()
-	//Serial.print(accel.getAccel().x);
-	//Serial.print(", ");
-	//Serial.print(accel.getAccel().y);
-	//Serial.print(", ");
-	//Serial.print(accel.getAccel().z);
-	//Serial.print(", ");
-	//Serial.print(accel.getGyro().x);
-	//Serial.print(", ");
-	//Serial.print(accel.getGyro().y);
-	//Serial.print(", ");
-	//Serial.println(accel.getGyro().z);
+	Serial.print(accel.getAccel().x);
+	Serial.print(", ");
+	Serial.print(accel.getAccel().y);
+	Serial.print(", ");
+	Serial.print(accel.getAccel().z);
+	Serial.print(", ");
+	Serial.print(accel.getGyro().x);
+	Serial.print(", ");
+	Serial.print(accel.getGyro().y);
+	Serial.print(", ");
+	Serial.println(accel.getGyro().z);
 
-	serialPrintln("GONNA CHECK IF I FELL");
+	//serialPrintln("GONNA CHECK IF I FELL");
 	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
 	{
-		Serial.print("I FELL YOOOO");
-		playTones();
+		  Serial.print("I FELL YOOOO");
+		//playTones();
 		//gsm.init();
 		//char message[] = "TESTING_123";
 		//gsm.sendSMS(message);

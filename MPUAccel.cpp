@@ -23,9 +23,9 @@ bool MPUAccel::MPUInit()
 	// sets the power management bit to 0, enbaling the chip
 	writeToAddress(PWR_MANAGEMENT, 0);
 
-	getAccuracy();
-	setAccelAccuracy(0x03);
-	getAccuracy();
+	//getAccuracy();
+	//setAccelAccuracy(0x03);
+	//getAccuracy();
 
 	return true;
 }
@@ -128,17 +128,17 @@ bool MPUAccel::retrieveAccelValues()
 	GyY = accelValues[10] << 8 | accelValues[11];  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
 	GyZ = accelValues[12] << 8 | accelValues[13];  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
 
-	Serial.print(AcX);
-	Serial.print(", ");
-	Serial.print(AcY);
-	Serial.print(", ");
-	Serial.print(AcZ);
-	Serial.print(", ");
-	Serial.print(GyX);
-	Serial.print(", ");
-	Serial.print(GyY);
-	Serial.print(", ");
-	Serial.println(GyZ);
+	//Serial.print(AcX);
+	//Serial.print(", ");
+	//Serial.print(AcY);
+	//Serial.print(", ");
+	//Serial.print(AcZ);
+	//Serial.print(", ");
+	//Serial.print(GyX);
+	//Serial.print(", ");
+	//Serial.print(GyY);
+	//Serial.print(", ");
+	//Serial.println(GyZ);
 
 	accel = vec3(AcX, AcY, AcZ);
 	gyro = vec3(GyX, GyY, GyZ);
