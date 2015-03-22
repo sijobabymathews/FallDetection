@@ -21,9 +21,6 @@
     <ClInclude Include="Visual Micro\.GSMTest.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Accelerometer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FallDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,15 +30,21 @@
     <ClInclude Include="vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MPUAccel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visual Micro\.FallDetection.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Accelerometer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FallDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GSMManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MPUAccel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

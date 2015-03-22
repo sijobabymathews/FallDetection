@@ -23,9 +23,8 @@ bool MPUAccel::MPUInit()
 	// sets the power management bit to 0, enbaling the chip
 	writeToAddress(PWR_MANAGEMENT, 0);
 
-	getAccuracy();
-	setAccelAccuracy(0x03);
-	getAccuracy();
+	setAccelAccuracy(0x00);
+	setGyroAccuracy(0x00);
 
 	return true;
 }
@@ -82,6 +81,7 @@ void MPUAccel::setAccelAccuracy(char accuracy)
 void MPUAccel::setGyroAccuracy(char accuracy)
 {
 	writeToAddress(GYRO_ACCURACY_ADDRESS, accuracy << 3);
+	gyroAccuracy = accuracy;
 }
 
 //need to know the length of the payload you want and address it is coming from
@@ -128,7 +128,7 @@ bool MPUAccel::retrieveAccelValues()
 	GyY = accelValues[10] << 8 | accelValues[11];  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
 	GyZ = accelValues[12] << 8 | accelValues[13];  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
 
-	Serial.print(AcX);
+	/*Serial.print(AcX);
 	Serial.print(", ");
 	Serial.print(AcY);
 	Serial.print(", ");
@@ -138,10 +138,47 @@ bool MPUAccel::retrieveAccelValues()
 	Serial.print(", ");
 	Serial.print(GyY);
 	Serial.print(", ");
-	Serial.println(GyZ);
+	Serial.println(GyZ);*/
 
-	accel = vec3(AcX, AcY, AcZ);
-	gyro = vec3(GyX, GyY, GyZ);
+	double scalingFactor = 1.0;
+	//00 = 0 = 2G, 01 = 1 = 4G, 10 = 2 = 8G, 11 = 3 = 16G
+	switch (accelerometerAccuracy) {
+	case 0x00:
+		scalingFactor = 2.0 / 32767.0;
+		break;
+	case 0x01:
+		scalingFactor = 4.0 / 32767.0;
+		break;
+	case 0x02:
+		scalingFactor = 8.0 / 32767.0;
+		break;
+	case 0x03:
+		scalingFactor = 16.0 / 32767.0;
+		break;
+	}
+
+
+
+	accel = vec3(AcX * scalingFactor, AcY * scalingFactor, AcZ * scalingFactor);
+
+
+	//get the values in degrees
+	switch (gyroAccuracy) {
+	case 0x00:
+		scalingFactor = 250.0 / 32767.0;
+		break;
+	case 0x01:
+		scalingFactor = 500.0 / 32767.0;
+		break;
+	case 0x02:
+		scalingFactor = 1000.0 / 32767.0;
+		break;
+	case 0x03:
+		scalingFactor = 2000.0 / 32767.0;
+		break;
+	}
+
+	gyro = vec3(GyX * scalingFactor, GyY * scalingFactor, GyZ * scalingFactor);
 
 	return true;
 }

@@ -15,10 +15,10 @@ bool GSMManager::init()
 	SIM900 = new SoftwareSerial(7, 8);
 
 	SIM900->begin(19200);
-	delay(2000);	//pause for 2 seconds to wait to register on network
 	powerToggle();
-	sendATcommand("AT+CPIN?", "+CREG: 1", 10000);
 
+	delay(2000);	//pause for 2 seconds to wait to register on network
+	sendATcommand("AT+CPIN?", "+CREG: 1", 10000);
 }
 
 bool GSMManager::sendSMS(char mess[])
@@ -43,7 +43,7 @@ bool GSMManager::sendSMS(char mess[])
 	return ans;
 }
 
-void GSMManager::endSystem()
+GSMManager::~GSMManager()
 {
 	delete SIM900;
 }
@@ -54,7 +54,7 @@ void GSMManager::powerToggle()
 	digitalWrite(9, HIGH);
 	delay(1000);
 	digitalWrite(9, LOW);
-	delay(5000);
+	delay(1000);
 }
 
 int8_t GSMManager::sendATcommand(char* ATcommand, char* expected_answer, unsigned int timeout){

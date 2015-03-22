@@ -8,11 +8,11 @@ class GSMManager
 {
   public:
     GSMManager();
+	~GSMManager();
     bool init();
     bool sendSMS(char mess[]);
     
   private:
-	void endSystem();
 	void powerToggle();
 	int8_t sendATcommand(char* ATcommand, char* expected_answer, unsigned int timeout);
 	SoftwareSerial* SIM900;

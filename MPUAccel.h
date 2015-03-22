@@ -26,9 +26,6 @@ class MPUAccel
 	  int16_t accelerometerAccuracy = 0x00;
       int16_t gyroAccuracy = 0x00;
 	  int16_t filterStrength = 0x00;
-
-	  int16_t gyroRange = 2;
-	  int16_t accelRange = 2;
 };
 
 #endif  //ACCELEROMETER_H
