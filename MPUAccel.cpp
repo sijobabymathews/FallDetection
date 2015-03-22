@@ -23,8 +23,9 @@ bool MPUAccel::MPUInit()
 	// sets the power management bit to 0, enbaling the chip
 	writeToAddress(PWR_MANAGEMENT, 0);
 
+	// +/- 2G is appropriate, but need +/- 1000 deg/s for angle measurement
 	setAccelAccuracy(0x00);
-	setGyroAccuracy(0x00);
+	setGyroAccuracy(0x02);
 
 	return true;
 }
