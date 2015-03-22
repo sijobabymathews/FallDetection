@@ -178,6 +178,7 @@ bool MPUAccel::retrieveAccelValues()
 		break;
 	}
 
+
 	gyro = vec3(GyX * scalingFactor, GyY * scalingFactor, GyZ * scalingFactor);
 
 	return true;
