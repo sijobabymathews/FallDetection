@@ -15,10 +15,20 @@ bool GSMManager::init()
 	SIM900 = new SoftwareSerial(7, 8);
 
 	SIM900->begin(19200);
-	powerToggle();
+	//powerToggle();
 
 	delay(2000);	//pause for 2 seconds to wait to register on network
-	sendATcommand("AT+CPIN?", "+CREG: 1", 10000);
+	int response = sendATcommand("AT+CPIN?", "+CREG: 1", 10000);
+	if (!response)
+	{
+		Serial.println("MAYBE NOT ON");
+		response = sendATcommand("AT+CPIN?", "+C", 10000);
+		if (!response)
+			powerToggle();
+		response = sendATcommand("AT+CPIN?", "+C", 10000);
+		if (!response)
+			Serial.println("CANNOT CONNECT TO GSM MODULE");
+	}
 }
 
 bool GSMManager::sendSMS(char mess[])
@@ -27,18 +37,23 @@ bool GSMManager::sendSMS(char mess[])
 	delay(100);
 
 	//CHANGE THE CONTACT NUMBER HERE - NEED THE +1 infront for country code
-	int8_t ans = sendATcommand("AT+CMGS=\"+12267929610\"", "> ", 2000);                                     // recipient's mobile number, in international format
+	int8_t ans = sendATcommand("AT+CMGS=\"+19055105955\"", "> ", 2000);                                     // recipient's mobile number, in international format
 	if (ans == 1)
 	{
 		SIM900->println(mess);        // message to send
 		delay(1000);
-		SIM900->write(0x1A);                       // End AT command with a ^Z, ASCII code 26
-		ans = sendATcommand("", "OK", 20000);
+		SIM900->write(0x1A);						// End AT command with a ^Z, ASCII code 26
+		ans = sendATcommand("", "OK", 5000);		//5 second timeout
 	}
 	if (ans)
+	{
 		Serial.println("SENT MESSAGE");
+	}
 	else
+	{
 		Serial.println("FAILED");
+		PlayTextFailed();
+	}
 	delay(1000);                                     // give module time to send SMS
 	return ans;
 }

@@ -1,15 +1,24 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+/*
+Kinda more like a helper with a bunch of helpful functions that just a vector header.
+*/
+
+
 #include <math.h>
 #include <Arduino.h>
 
 //if you want verbose logging, else will only print out the 
 #define DEBUG 1
-#define P_THRESHOLD 20000.00
-#define DELTA_A_THRESHOLD 10000.00
+
+#define P_THRESHOLD 220.0
+#define DELTA_A_THRESHOLD 0.08
 #define A_THRESHOLD 25000.00
 #define HISTORY_SIZE 5
+
+
+
 
 template<typename T> void serialPrint(T message)
 {
@@ -21,6 +30,44 @@ template<typename T> void serialPrintln(T message)
 {
 	if (DEBUG)
 		Serial.println(message);
+}
+
+//Length in seconds
+static void PlayFallTone(int8_t length)
+{
+
+	// Which pin the speaker is on
+	int speakerPin = 3;
+	//tones to play for success
+	int numTones = 1;
+	int tones[] = { 300 };
+
+	for (int i = 0; i < numTones; i++)
+	{
+		tone(speakerPin, tones[i]);
+		delay(1000 * length);
+	}
+	noTone(speakerPin);
+}
+
+static void PlayTextFailed()
+{
+
+
+	// Which pin the speaker is on
+	int speakerPin = 3;
+	//tones to play for success
+	int numTones = 5;
+	int tones[] = { 400, 400, 300, 400, 400 };
+
+	for (int i = 0; i < numTones; i++)
+	{
+		tone(speakerPin, tones[i]);
+		delay(1000);
+		noTone(speakerPin);
+		delay(500);
+	}
+	noTone(speakerPin);
 }
 
 struct vec3

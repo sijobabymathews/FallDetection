@@ -2,6 +2,7 @@
 #define GSMMANAGER_H
 
 #include <SoftwareSerial.h>
+#include "vector.h"
 #include <Arduino.h>
 
 class GSMManager
