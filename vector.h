@@ -12,8 +12,8 @@ Kinda more like a helper with a bunch of helpful functions that just a vector he
 //if you want verbose logging, else will only print out the 
 #define DEBUG 1
 
-#define P_THRESHOLD 220.0
-#define DELTA_A_THRESHOLD 0.08
+#define P_THRESHOLD 250.0
+#define DELTA_A_THRESHOLD 0.1
 #define A_THRESHOLD 25000.00
 #define HISTORY_SIZE 5
 
