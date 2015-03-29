@@ -18,14 +18,17 @@ bool GSMManager::init()
 	//powerToggle();
 
 	delay(2000);	//pause for 2 seconds to wait to register on network
-	int response = sendATcommand("AT+CPIN?", "+CREG: 1", 10000);
+	int response = sendATcommand("AT+CPIN?", "+CREG: 1", 1000);
 	if (!response)
 	{
 		Serial.println("MAYBE NOT ON");
-		response = sendATcommand("AT+CPIN?", "+C", 10000);
+		response = sendATcommand("AT+CPIN?", "+C", 1000);
 		if (!response)
+		{
 			powerToggle();
-		response = sendATcommand("AT+CPIN?", "+C", 10000);
+			delay(15000);
+		}
+		response = sendATcommand("AT+CPIN?", "+C", 2000);
 		if (!response)
 			Serial.println("CANNOT CONNECT TO GSM MODULE");
 	}

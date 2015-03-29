@@ -38,27 +38,27 @@ void loop()
 	//Serial.println("GOT SENSOR VALUES");
 
 	//want to print at all times, so keep as Serial.print()
-	Serial.print(accel.getAccel().x);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().y);
-	Serial.print(", ");
-	Serial.print(accel.getAccel().z);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().x);
-	Serial.print(", ");
-	Serial.print(accel.getGyro().y);
-	Serial.print(", ");
-	Serial.println(accel.getGyro().z);
+	//Serial.print(accel.getAccel().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().y);
+	//Serial.print(", ");
+	//Serial.print(accel.getAccel().z);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().x);
+	//Serial.print(", ");
+	//Serial.print(accel.getGyro().y);
+	//Serial.print(", ");
+	//Serial.println(accel.getGyro().z);
 
-	//if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
-	//{
-	//	PlayFallTone(7);
-	//	
-	//	gsm.init();
-	//	char message[128];
-	//	sprintf(message, "User has fallen - Location 43.46%d N, 80.54%d W", (int)accel.getAccel().y, (int)accel.getAccel().z);
-	//	gsm.sendSMS(message);
-	//}
+	if (fallDetection.isFall(accel.getAccel(), accel.getGyro()))
+	{
+		PlayFallTone(7);
+		
+		gsm.init();
+		char message[128];
+		sprintf(message, "User has fallen - Location 43.46%d N, 80.54%d W", abs((int)accel.getGyro().y), abs((int)accel.getGyro().z));
+		gsm.sendSMS(message);
+	}
 
 	delay(100);
 }

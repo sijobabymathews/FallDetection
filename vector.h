@@ -58,14 +58,14 @@ static void PlayTextFailed()
 	int speakerPin = 3;
 	//tones to play for success
 	int numTones = 5;
-	int tones[] = { 400, 400, 300, 400, 400 };
+	int tones[] = { 400, 400, 390, 400, 400 };
 
 	for (int i = 0; i < numTones; i++)
 	{
 		tone(speakerPin, tones[i]);
-		delay(1000);
-		noTone(speakerPin);
 		delay(500);
+		noTone(speakerPin);
+		delay(250);
 	}
 	noTone(speakerPin);
 }
